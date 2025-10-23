@@ -1,0 +1,12 @@
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\bin\Debug\net8.0\Lab08.deps.json
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\bin\Debug\net8.0\Lab08.dll
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\bin\Debug\net8.0\Lab08.pdb
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\obj\Debug\net8.0\Lab08.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\obj\Debug\net8.0\Lab08.AssemblyInfoInputs.cache
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\obj\Debug\net8.0\Lab08.AssemblyInfo.cs
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\obj\Debug\net8.0\Lab08.csproj.CoreCompileInputs.cache
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\obj\Debug\net8.0\Lab08.sourcelink.json
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\obj\Debug\net8.0\Lab08.dll
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\obj\Debug\net8.0\refint\Lab08.dll
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\obj\Debug\net8.0\Lab08.pdb
+C:\Users\benji\code\my-code-dir\object-oriented-programming\lab-8-fountain-of-objects-2-benji-stansfield\Lab08\obj\Debug\net8.0\ref\Lab08.dll

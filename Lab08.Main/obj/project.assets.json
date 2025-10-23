@@ -1,0 +1,94 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "Lab08/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Lab08.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lab08.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Lab08/1.0.0": {
+      "type": "project",
+      "path": "../Lab08/Lab08.csproj",
+      "msbuildProject": "../Lab08/Lab08.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "Lab08 >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\benji\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\benji\\code\\my-code-dir\\object-oriented-programming\\lab-8-fountain-of-objects-2-benji-stansfield\\Lab08.Main\\Lab08.Main.csproj",
+      "projectName": "Lab08.Main",
+      "projectPath": "C:\\Users\\benji\\code\\my-code-dir\\object-oriented-programming\\lab-8-fountain-of-objects-2-benji-stansfield\\Lab08.Main\\Lab08.Main.csproj",
+      "packagesPath": "C:\\Users\\benji\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\benji\\code\\my-code-dir\\object-oriented-programming\\lab-8-fountain-of-objects-2-benji-stansfield\\Lab08.Main\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\benji\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Users\\benji\\code\\my-code-dir\\object-oriented-programming\\lab-8-fountain-of-objects-2-benji-stansfield\\Lab08\\Lab08.csproj": {
+              "projectPath": "C:\\Users\\benji\\code\\my-code-dir\\object-oriented-programming\\lab-8-fountain-of-objects-2-benji-stansfield\\Lab08\\Lab08.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
