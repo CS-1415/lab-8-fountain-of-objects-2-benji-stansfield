@@ -1,4 +1,6 @@
-﻿namespace Lab08;
+﻿using System.Xml;
+
+namespace Lab08;
 
 public class FountainOfObjectsGame
 {
@@ -38,8 +40,17 @@ public class FountainOfObjectsGame
             if (currentRoom.RoomType == RoomType.Pit)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Player.Die("You fell into a pit.");
+                Console.WriteLine("You fell into a pit and took 5 damage.");
                 Console.ForegroundColor = ConsoleColor.White;
+
+                Player.Health -= 5;
+
+                if (Player.Health == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Player.Die("You fell into a pit and died on impact.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
 
             // Checks monster encounters
@@ -47,7 +58,7 @@ public class FountainOfObjectsGame
             {
                 if (monster.IsAlive && monster.Location.Equals(Player.Location))
                 {
-                    monster.Activate(this);
+                    EnemyEncounter(monster);
                 }
             }
 
@@ -104,6 +115,21 @@ public class FountainOfObjectsGame
             _ => null
         };
     }
+
+    public void EnemyEncounter(Monster monster)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"You encountered a {monster}");
+        Console.ForegroundColor = ConsoleColor.White;
+
+        while (Player.IsAlive && monster.IsAlive)
+        {
+            if (monster != Snake)
+            {
+                PlayerTurn(monster);
+                EnemyTurn();
+            }
+        }
 
     public void GetSense()
     {
