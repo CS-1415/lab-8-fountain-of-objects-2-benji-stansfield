@@ -3,6 +3,7 @@ namespace Lab08;
 public abstract class Monster
 {
     public Location Location { get; set; }
+    public int Health { get; set; }
     public bool IsAlive { get; set; } = true;
     public Monster(Location start) => Location = start;
     public abstract void Activate(FountainOfObjectsGame game);
@@ -36,4 +37,10 @@ public class Amarok : Monster
 {
     public Amarok(Location start) : base(start) { }
     public override void Activate(FountainOfObjectsGame game) => game.Player.Die("You were killed by an Amarok.");
+}
+
+public class Snake : Monster
+{
+    public Snake(Location start) : base(start) { }
+    public override void Activate(FountainOfObjectsGame game) => game.Player.Die("The snake's venom was too much for you.");
 }

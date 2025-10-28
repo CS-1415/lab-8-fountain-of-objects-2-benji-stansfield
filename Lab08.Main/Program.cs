@@ -33,45 +33,7 @@ public class Program
 
         Map map = new Map(size, size);
         Player player = new Player(new Location(0, 0));
-        Monster[] monsters;
-
-        // Monsters for a small game
-        if (map.Rows == 4)
-        {
-            monsters = new Monster[]
-            {
-                new Amarok(map.GetRandomEmptyLocation()),
-                new Maelstrom(map.GetRandomEmptyLocation())
-            };
-        }
-
-        // Monsters for a medium game
-        else if (map.Rows == 6)
-        {
-            monsters = new Monster[]
-            {
-                new Amarok(map.GetRandomEmptyLocation()),
-                new Maelstrom(map.GetRandomEmptyLocation()),
-                new Amarok(map.GetRandomEmptyLocation()),
-                new Maelstrom(map.GetRandomEmptyLocation())
-            };
-        }
-
-        // Monsters for a large game
-        else if (map.Rows == 8)
-        {
-            monsters = new Monster[]
-            {
-                new Amarok(map.GetRandomEmptyLocation()),
-                new Maelstrom(map.GetRandomEmptyLocation()),
-                new Amarok(map.GetRandomEmptyLocation()),
-                new Maelstrom(map.GetRandomEmptyLocation()),
-                new Amarok(map.GetRandomEmptyLocation()),
-                new Maelstrom(map.GetRandomEmptyLocation())
-            };
-        }
-
-        else monsters = Array.Empty <Monster>();
+        Monster[] monsters = map.GenerateMonsters(0.25);
 
         FountainOfObjectsGame game = new FountainOfObjectsGame(map, player, monsters);
 

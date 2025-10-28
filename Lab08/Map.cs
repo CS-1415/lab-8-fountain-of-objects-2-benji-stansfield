@@ -48,6 +48,34 @@ public class Map
         }
     }
 
+    public Monster[] GenerateMonsters(double spawnChance)
+    {
+        List<Monster> monsters = new List<Monster>();
+        for (int r = 0; r < Rows; r++)
+        {
+            for (int c = 0; c < Columns; c++)
+            {
+                Room room = _rooms[r, c];
+
+                if (room.RoomType == RoomType.Normal) // only spawns in normal rooms
+                {
+
+                    if (rand.NextDouble() < spawnChance) // chooses if a monster spawns in a room or not
+                    {
+                        int spawnMonster = rand.Next(3);
+                        if (spawnMonster == 0)
+                            monsters.Add(new Amarok(new Location(r, c)));
+                        else if (spawnMonster == 1)
+                            monsters.Add(new Maelstrom(new Location(r, c)));
+                        else monsters.Add(new Snake(new Location(r, c)));
+                    }
+                }
+            }
+        }
+        
+        return monsters.ToArray();
+    }
+
     public Location GetRandomEmptyLocation()
     {
         int row, col;
