@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.IO.Compression;
+using System.Xml;
 
 namespace Lab08;
 
@@ -8,6 +9,7 @@ public class FountainOfObjectsGame
     public Player Player { get; }
     public Monster[] Monsters { get; }
     public bool IsFountainOn { get; set; }
+    private static readonly Random Dice = new Random();
 
     public FountainOfObjectsGame(Map map, Player player, Monster[] monsters)
     {
@@ -87,7 +89,6 @@ public class FountainOfObjectsGame
     public void DisplayStatus()
     {
         Console.WriteLine("---------------------------------------------------------------------------------------------");
-        Console.WriteLine($"You have {Player.ArrowsRemaining} arrows remaining.");
         Console.WriteLine($"You are in the room at (Row = {Player?.Location?.Row}, Column = {Player?.Location?.Column}).");
     }
     public bool WonGame()
@@ -108,10 +109,6 @@ public class FountainOfObjectsGame
             "move east" => new MoveCommand(Direction.East),
             "move west" => new MoveCommand(Direction.West),
             "enable fountain" => new EnableFountainCommand(),
-            "shoot north" => new ShootCommand(Direction.North),
-            "shoot south" => new ShootCommand(Direction.South),
-            "shoot east" => new ShootCommand(Direction.East),
-            "shoot west" => new ShootCommand(Direction.West),
             _ => null
         };
     }
@@ -119,17 +116,105 @@ public class FountainOfObjectsGame
     public void EnemyEncounter(Monster monster)
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"You encountered a {monster}");
+        Console.WriteLine($"You encountered a {monster.GetType().Name}");
         Console.ForegroundColor = ConsoleColor.White;
 
         while (Player.IsAlive && monster.IsAlive)
         {
-            if (monster != Snake)
+            if (monster is Snake)
+            {
+                EnemyTurn(monster);
+                if (Player.IsAlive) PlayerTurn(monster);
+            }
+            else
             {
                 PlayerTurn(monster);
-                EnemyTurn();
+                if (monster.IsAlive) EnemyTurn(monster);
             }
         }
+    }
+
+    public void PlayerTurn(Monster monster)
+    {
+        Console.WriteLine("It's your turn!");
+        Console.Write("What would you like to do? (attack or run?): ");
+        Console.ForegroundColor = ConsoleColor.Green;
+        string action = Console.ReadLine()?.ToLower();
+        Console.ForegroundColor = ConsoleColor.White;
+
+        if (action == "attack")
+        {
+            int roll = Dice.Next(1, 21);
+            int Hit = roll + Player.EquippedWeapon.HitChancePlus;
+            int DamageRoll = Dice.Next(1,7);
+            int Damage = DamageRoll + Player.EquippedWeapon.Damage;
+            
+            // Natural 1
+            if (roll == 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You miss big time! You take 2 damage out of pure embarrassment.");
+                Player.Health -= 2;
+                return;
+            }
+
+            // Natural 20
+            if (roll == 20)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("It's a critical hit!");
+                Damage = (DamageRoll * 2) + Player.EquippedWeapon.Damage;
+
+                Console.WriteLine($"You deal {Damage} damage!");
+                Console.ForegroundColor = ConsoleColor.White;
+                monster.Health -= Damage;
+            }
+
+            // Hit
+            else if (Hit >= monster.ArmorClass)
+            {
+                Console.WriteLine($"You hit the {monster.GetType().Name}!");
+                Damage = DamageRoll + Player.EquippedWeapon.Damage;
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"You deal {Damage} damage!");
+                Console.ForegroundColor = ConsoleColor.White;
+                monster.Health -= Damage;
+            }
+
+            // Miss
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Your attack missed.");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+        }
+        else if (action == "run")
+        {
+            int savingThrow = 10;
+            int roll = Dice.Next(1, 21);
+            if (roll >= savingThrow)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("You successfully escaped from the monster");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You could not outrun the monster.");
+                Console.ForegroundColor = ConsoleColor.White;
+                savingThrow += 2;
+            }
+        }
+        else Console.WriteLine("You hesitated and lost your turn.");
+    }
+
+    public void EnemyTurn(Monster monster)
+    {
+        
+    }
 
     public void GetSense()
     {
@@ -174,4 +259,4 @@ public class FountainOfObjectsGame
 }
 
 public enum RoomType { Normal, Fountain, Entrance, Pit }
-public enum Direction { North, South, East, West}
+public enum Direction { North, South, East, West }

@@ -36,54 +36,6 @@ public class MoveCommand : ICommand
     }
 }
 
-public class ShootCommand : ICommand
-{
-    public Direction Direction { get; }
-
-    public ShootCommand(Direction direction)
-    {
-        Direction = direction;
-    }
-
-    public void Execute(FountainOfObjectsGame game)
-    {
-        if (game.Player.ArrowsRemaining == 0)
-        {
-            Console.WriteLine("You are out of arrows.");
-            return;
-        }
-
-        Location currentLocation = game.Player.Location;
-        Location targetLocation = Direction switch
-        {
-            Direction.North => new Location(currentLocation.Row - 1, currentLocation.Column),
-            Direction.South => new Location(currentLocation.Row + 1, currentLocation.Column),
-            Direction.West => new Location(currentLocation.Row, currentLocation.Column - 1),
-            Direction.East => new Location(currentLocation.Row, currentLocation.Column + 1)
-        };
-
-        bool foundSomething = false;
-        foreach (Monster monster in game.Monsters)
-        {
-            if (monster.Location == targetLocation && monster.IsAlive)
-            {
-                monster.IsAlive = false;
-                foundSomething = true;
-            }
-        }
-
-        if (foundSomething)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Your arrow killed a monster!");
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        else Console.WriteLine("You fire an arrow and missed.");
-
-        game.Player.ArrowsRemaining--;
-    }
-}
-
 public class EnableFountainCommand : ICommand
 {
     public void Execute(FountainOfObjectsGame game)
