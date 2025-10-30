@@ -16,3 +16,13 @@ public class ShortSword : Weapon
 {
     public ShortSword() : base(5, 4) { }
 }
+
+public class Claws : Weapon
+{
+    public Claws() : base(7, 5) { }
+}
+
+public class Venom : Weapon
+{
+    public Venom() : base(18, 3) { }
+}
