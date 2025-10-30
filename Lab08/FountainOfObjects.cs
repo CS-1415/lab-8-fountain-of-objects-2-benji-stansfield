@@ -89,7 +89,6 @@ public class FountainOfObjectsGame
     {
         Console.WriteLine("---------------------------------------------------------------------------------------------");
         Console.WriteLine($"Health remaining: {Player.Health} hit points.            Current weapon: {Player.EquippedWeapon}");
-        Console.WriteLine($"Available items: ");
         Console.WriteLine($"You are in the room at (Row = {Player?.Location?.Row}, Column = {Player?.Location?.Column}).");
     }
     public bool WonGame() => IsFountainOn && Player.Location.Equals(new Location(0, 0));
